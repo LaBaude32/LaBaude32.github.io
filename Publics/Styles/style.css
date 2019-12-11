@@ -1,0 +1,24 @@
+.imgDiapo {
+    display: none;
+}
+
+.active{
+    display: block;
+}
+
+#tuto{
+    text-align: center;
+}
+
+#map {
+    height: 500px;
+    /* margin: 15px; */
+}
+
+#form{
+    display: none;
+}
+
+#displayTimer{
+    visibility: hidden;
+}
