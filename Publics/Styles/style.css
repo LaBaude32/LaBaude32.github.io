@@ -2,11 +2,11 @@
     display: none;
 }
 
-.active{
+.active {
     display: block;
 }
 
-#tuto{
+#tuto {
     text-align: center;
 }
 
@@ -15,10 +15,10 @@
     /* margin: 15px; */
 }
 
-#form{
+#form {
     display: none;
 }
 
-#displayTimer{
+#displayTimer {
     visibility: hidden;
 }

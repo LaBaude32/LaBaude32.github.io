@@ -20,4 +20,23 @@ class Diapo {
 
         document.getElementById(imageActiveId).setAttribute('class', 'imgDiapo img-fluid active')
     }
+
+
+    precedentDiapo() {
+        let listImgs = document.querySelectorAll('.imgDiapo');
+        let nbImg = listImgs.length;
+        nbImg--;
+
+        let imageActive = document.querySelector('.imgDiapo.active');
+        imageActive.setAttribute('class', 'imgDiapo img-fluid');
+        let imageActiveId = imageActive.getAttribute('id');
+        imageActiveId = imageActiveId.split('-')[1];
+        imageActiveId--;
+        if (imageActiveId < 0) {
+            imageActiveId = nbImg;
+        }
+        imageActiveId = 'slider-' + imageActiveId;
+
+        document.getElementById(imageActiveId).setAttribute('class', 'imgDiapo img-fluid active')
+    }
 }

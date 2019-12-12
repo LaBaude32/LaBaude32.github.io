@@ -19,7 +19,6 @@ let stations;
 let data = fetch(url)
     .then(response => response.json())
     .then((data) => {
-        console.log();
         stations = data;
         let macarte = new Map(lat, lon);
         macarte.addMarkerByStations(stations);

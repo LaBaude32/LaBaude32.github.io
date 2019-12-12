@@ -2,135 +2,140 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="Publics/Bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="Publics/Styles/style.css">
-    <link rel="stylesheet" href="Publics/Leaflet/leaflet.css" />
-    <script src="Publics/Leaflet/leaflet.js"></script>
-    <link rel="stylesheet" type="text/css"
-        href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
-    <link rel="stylesheet" type="text/css"
-        href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
-    <script type='text/javascript' src='https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js'>
-    </script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <title>Reservation d'un vélo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="Publics/Bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="Publics/Styles/style.css">
+  <link rel="stylesheet" href="Publics/Leaflet/leaflet.css" />
+  <script src="Publics/Leaflet/leaflet.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+  <script type='text/javascript' src='https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js'>
+  </script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <title>Reservation d'un vélo</title>
 </head>
 
 <body>
-    <div class="container mt-5">
-        <div class="row mb-1">
-            <div class="col-12">
-                <h1>Réservation d'un vélo</h1>
-                <hr>
-            </div>
-        </div>
-        <div id="explications" class="row">
-            <div class="col-12">
-                <h2>Comment faire :</h2>
-                <button id="suivant" class="btn btn-primary mt-3">Diapo suivante</button>
-            </div>
-        </div>
-        <div class="row mt-2 mb-4">
-            <div id="tuto" class="col-12">
-                <img src="Publics/Images/Diapo/1.jpg" alt="image explicative de l'application'" id="slider-0"
-                    class="imgDiapo img-fluid active">
-                <img src="Publics/Images/Diapo/2.jpg" alt="image explicative de l'application'" id="slider-1"
-                    class="imgDiapo img-fluid">
-                <img src="Publics/Images/Diapo/3.jpg" alt="image explicative de l'application'" id="slider-2"
-                    class="imgDiapo img-fluid">
-                <img src="Publics/Images/Diapo/4.jpg" alt="image explicative de l'application'" id="slider-3"
-                    class="imgDiapo img-fluid">
-            </div>
-        </div>
+  <div class="container mt-5">
+    <div class="row mb-1">
+      <div class="col-12">
+        <h1>Réservation d'un vélo</h1>
         <hr>
-        <div id="reservation" class="row mb-2">
-            <div class="col-12">
-                <h2>Réserver un vélo :</h2>
-            </div>
-        </div>
-        <div id="appli" class="row">
-            <div id="map" class="col-lg-8 col-12"></div>
-            <div class="col-lg-3 col-12">
-                <h3 id="stationNom"></h3>
-                <p id="StationAdresse"></p>
-                <p id="StationVelosDispos"></p>
-                <div id="form">
-                    <hr class="mt-2">
-                    <form>
-                        <h3>Formulaire de réservation :</h3>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Nom</label>
-                            <input type="text" class="form-control" id="Name" placeholder="Coupey" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Prénom</label>
-                            <input type="text" class="form-control" id="FirstName" placeholder="Baudouin" required>
-                        </div>
-                        <p>Signature :</p>
-                        <canvas id="c1" style="background-color : #e3e3e3;"></canvas>
-                        <p id="test"></p>
-                        <a id="canvasErase" class="btn btn-danger text-light mb-1" role="button">Effacer</a>
-                        <button type="submit" id="LancementCompteur" class="btn btn-primary"> Valider la
-                            réservation</button>
-                    </form>
-                </div>
-                <p id="displayTimer" class="font-weight-bold">Temps restant : <span id="compteur"></span></p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div id="myModal" class="modal" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 id="modalTitle" class="modal-title"></h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p id="modalMsg">Modal body text goes here.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-
+    <div id="explications" class="row">
+      <div class="col-12">
+        <h2>Comment faire :</h2>
+        <button id="precedent" class="btn btn-primary mt-3">Diapo Précédente</button>
+        <button id="pause" class="btn btn-primary mt-3">Pause</button>
+        <button id="suivant" class="btn btn-primary mt-3">Diapo suivante</button>
+      </div>
     </div>
+    <div class="row mt-2 mb-4">
+      <div id="tuto" class="col-12">
+        <img src="Publics/Images/Diapo/1.jpg" alt="image explicative de l'application'" id="slider-0"
+          class="imgDiapo img-fluid active">
+        <img src="Publics/Images/Diapo/2.jpg" alt="image explicative de l'application'" id="slider-1"
+          class="imgDiapo img-fluid">
+        <img src="Publics/Images/Diapo/3.jpg" alt="image explicative de l'application'" id="slider-2"
+          class="imgDiapo img-fluid">
+        <img src="Publics/Images/Diapo/4.jpg" alt="image explicative de l'application'" id="slider-3"
+          class="imgDiapo img-fluid">
+      </div>
+    </div>
+    <hr>
+    <div id="reservation" class="row mb-2">
+      <div class="col-12">
+        <h2>Réserver un vélo :</h2>
+      </div>
+    </div>
+    <div id="appli" class="row">
+      <div id="map" class="col-lg-8 col-12"></div>
+      <div class="col-lg-3 col-12">
+        <div id="form">
+          <h3 id="stationNom"></h3>
+          <p id="StationAdresse"></p>
+          <p id="StationVelosDispos"></p>
+          <hr class="mt-2">
+          <form>
+            <h3>Formulaire de réservation :</h3>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Nom</label>
+              <input type="text" class="form-control" id="Name" placeholder="Coupey" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Prénom</label>
+              <input type="text" class="form-control" id="FirstName" placeholder="Baudouin" required>
+            </div>
+            <p>Signature :</p>
+            <canvas id="c1" style="background-color : #e3e3e3;"></canvas>
+            <p id="test"></p>
+            <a id="canvasErase" class="btn btn-danger text-light mb-1" role="button">Effacer</a>
+            <button type="submit" id="LancementCompteur" class="btn btn-primary"> Valider la
+              réservation</button>
+          </form>
+        </div>
+      </div>
+      <div id="displayTimer">
+        <p class="font-weight-bold">Vélo réservé à la station <span id="station"></span> par <span id="fullName"></span>
+        </p>
+        <p class="font-weight-bold">Temps restant : <span id="compteur"></span></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div id="myModal" class="modal" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 id="modalTitle" class="modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p id="modalMsg">Modal body text goes here.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-        </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-        </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-        </script>
-    <script src="Diapo.js"></script>
-    <script src="Map.js"></script>
-    <script src="Resa.js"></script>
-    <script src="ListenerAll.js"></script>
-    <script src="main.js"></script>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+  <script src="Diapo.js"></script>
+  <script src="Map.js"></script>
+  <script src="Resa.js"></script>
+  <script src="ListenerAll.js"></script>
+  <script src="main.js"></script>
 </body>
 <footer>
-    <div class="container mt-2 mb-2">
-        <div class="row">
-            <div class="col-12 text-center">
-                <hr>
-                <p class="mt-2">Application de réservation de vélo. OpenClassroom Projet 3. Copyright Baudouin Coupey
-                </p>
-            </div>
-        </div>
+  <div class="container mt-2 mb-2">
+    <div class="row">
+      <div class="col-12 text-center">
+        <hr>
+        <p class="mt-2">Application de réservation de vélo. OpenClassroom Projet 3. Copyright Baudouin Coupey
+        </p>
+      </div>
     </div>
+  </div>
 </footer>
 
 </html>

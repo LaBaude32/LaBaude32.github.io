@@ -7,10 +7,18 @@ class ListenerAll {
 		this.checkForm = checkForm;
 		this.canvas = canvas;
 		this.diapo = diapo;
+		this.pause = document.getElementById('pause');
+		this.precedent = document.getElementById('precedent');
+
+		let defilementAuto = setInterval(this.diapo.switchDiapo, 5000);
+		this.pause.addEventListener('click', _ => {
+			clearInterval(defilementAuto);
+		});
 	}
 
 	start() {
 		this.lancementDiapo.addEventListener('click', this.diapo.switchDiapo);
+		this.precedent.addEventListener('click', this.diapo.precedentDiapo);
 
 		this.lancementCanvas.addEventListener('mouseover', _ => {
 			this.canvas.signature();
@@ -28,4 +36,6 @@ class ListenerAll {
 			checkForm.checkForm(e);
 		});
 	}
+
+
 }
