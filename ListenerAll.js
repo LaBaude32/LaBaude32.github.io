@@ -24,6 +24,15 @@ class ListenerAll {
 			this.play.style.display = "none";
 		});
 
+		document.addEventListener("keydown", (e) => {
+			if (e.keyCode === 39) {
+				this.diapo.switchDiapo();
+			}
+			else if (e.keyCode === 37) {
+				this.diapo.precedentDiapo();
+			}
+		});
+
 	}
 
 	start() {
