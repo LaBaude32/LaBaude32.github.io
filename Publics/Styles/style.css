@@ -22,3 +22,11 @@
 #displayTimer {
     visibility: hidden;
 }
+
+#play {
+    display: none;
+}
+
+#pause {
+    display: inline-block;
+}

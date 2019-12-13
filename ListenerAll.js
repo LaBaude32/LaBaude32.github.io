@@ -8,12 +8,22 @@ class ListenerAll {
 		this.canvas = canvas;
 		this.diapo = diapo;
 		this.pause = document.getElementById('pause');
+		this.play = document.getElementById('play');
 		this.precedent = document.getElementById('precedent');
 
 		let defilementAuto = setInterval(this.diapo.switchDiapo, 5000);
 		this.pause.addEventListener('click', _ => {
 			clearInterval(defilementAuto);
+			this.play.style.display = "inline-block";
+			this.pause.style.display = "none";
 		});
+
+		this.play.addEventListener('click', _ => {
+			defilementAuto = setInterval(this.diapo.switchDiapo, 5000);
+			this.pause.style.display = "inline-block";
+			this.play.style.display = "none";
+		});
+
 	}
 
 	start() {
